@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="bootstrap-5.0.2-dist/css/bootstrap.min.css">
+<title>Temperature</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
+        width: 100%;
+        height: 100%;
+    }
+    #hello {
+        width: 50vw;
+        height: 75vh;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        border-radius: 10px;
+        border: 20px black;
+        background-color: #212529;
+        
+    }
+    #screenenter {
+        align-items: center;
+        justify-content: center;
+        margin: 2px auto 0 auto;
+        height: 30px;
+        
+    }
+    #screenresult {
+        align-items: center;
+        justify-content: center;
+        margin: 2px auto 0 auto;
+        height: 30px;
+        
+    }
+    #spn1, #spn2 {
+        margin-top: 50px;
+        
+    }
+    input {
+        text-align: center;
+        border-radius: 10px;
+        border: 1px solid #0dcaf0;
+        padding: 8px;
+        outline: none;
+        transition: border-color 0.3s, box-shadow 0.3s;
+        display: flex;
+        flex-direction: row;
+    }
+    input:focus {
+        border-color: #0dcaf0;
+        box-shadow: 0 0 5px #0dcaf0;
+      }
+    #btn1 {
+        border-radius: 10px;
+        font-weight: 500;
+        width: 100px;
+        height: 50px;
+        border: none;
+        transition: border-color 0.3s, box-shadow 0.3s;
+        
+    }
+    #btn2 {
+        float: right;
+        border-radius: 10px;
+        font-weight: 500;
+        width: 100px;
+        height: 50px;
+        border: none;
+        transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    #p {
+        margin: 20px 20px;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: row;
+        text-align: center;
+        justify-content: center;align-items: center;
+        
+    }
+    #divforbtns {
+        margin-top: 50px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        margin-bottom: 50px;
+    }
+    @media only screen and (max-width: 800px) {
+        #hello {
+        width: 90%;
+        height: 100%;
+        margin-bottom: 30px;
+        }
+      }
+</style>
+</head>
+<body class="bg-info">
+<div id="p" class="bg-dark p-3"><p class="display-5 text-center text-info fw-bold">ThermoMeter</p></div>
+<div id="hello">
+<span class="text-info fw-bold mx-auto" id="spn1" style="display: flex; flex-direction: row;">Enter Temperature</span>
+<input type="text" class="w-50 bg-info p-3 text-dark fw-bold" id="screenenter" onclick="inpu0(), inpu1(), inpu2()" onblur="inpu00(), inpu11(), inpu22()">
+<span class="text-info fw-bold mx-auto" id="spn2" style="display: flex; flex-direction: row;">Result</span>
+<input type="text" class="w-50 bg-info p-3 text-dark fw-bold inpu" id="screenresult" disabled>
+    <div id="divforbtns">
+    <span id="btnn1"><button id="btn1" class="bg-info text-dark fw-bold" onclick="converttofahrenheit(), document.getElementById('spn1').innerHTML = 'Fahrenheit', document.getElementById('spn2').innerHTML = 'Celsius'">
+        Fahrenheit
+    </button></span>
+    <span id="btnn2"><button id="btn2" class="bg-info text-dark fw-bold" onclick="converttocelsius(), document.getElementById('spn1').innerHTML = 'Celsius', document.getElementById('spn2').innerHTML = 'Fahrenheit'">
+        Celsius
+    </button></span>
+    </div>
+</div>
+<script>
+    function converttocelsius(){
+        let input = document.getElementById('screenenter').value;
+        let fahrenheit = parseFloat(input);
+        if (!isNaN(fahrenheit)){
+            let celsius = (5/9) * (fahrenheit - 32);
+            document.getElementById('screenresult').value = celsius.toFixed(2);
+        }
+        else
+        {
+            document.getElementById('screenresult').value = "Invalid Input";
+        }
+    }
+    function converttofahrenheit(){
+        let input = document.getElementById('screenenter').value;
+        let celsius = parseFloat(input);
+        if (!isNaN(celsius)){
+            let fahrenheit = (9/5) * (celsius + 32);
+            document.getElementById('screenresult').value = fahrenheit.toFixed(2);
+        }
+        else
+        {
+            document.getElementById('screenresult').value = "Invalid Input";
+        }
+    }
+    function inpu0() {
+        const inp = document.getElementById('screenresult');
+        inp.style.borderColor = "#0dcaf0";
+        inp.style.boxShadow = "0 0 5px #0dcaf0";
+    }
+    function inpu1() {
+        const inp = document.getElementById('btn1');
+        inp.style.borderColor = "#0dcaf0";
+        inp.style.boxShadow = "0 0 5px #0dcaf0";
+    }
+    function inpu2() {
+        const inp = document.getElementById('btn2');
+        inp.style.borderColor = "#0dcaf0";
+        inp.style.boxShadow = "0 0 5px #0dcaf0";
+    }
+    function inpu00() {
+        const inp = document.getElementById('screenresult');
+        inp.style.borderColor = "none";
+        inp.style.boxShadow = "none";
+    }
+    function inpu11() {
+        const inp = document.getElementById('btn1');
+        inp.style.borderColor = "none";
+        inp.style.boxShadow = "none";
+    }
+    function inpu22() {
+        const inp = document.getElementById('btn2');
+        inp.style.borderColor = "none";
+        inp.style.boxShadow = "none";
+    }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+</body>
+</html>
